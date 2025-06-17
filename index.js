@@ -15,8 +15,6 @@ try {
 
 console.log('📅 Setting up scheduled jobs...')
 
-// Weekly Leaderboard Update - Every Monday at 12:00 AM EST
-// Cron: "0 0 * * 1" = minute:0, hour:0, day:any, month:any, dayOfWeek:1 (Monday)
 cron.schedule('0 0 * * 1', async () => {
   console.log('🏆 Starting weekly leaderboard update job...')
   try {
@@ -33,8 +31,6 @@ cron.schedule('0 0 * * 1', async () => {
   timezone: "America/New_York"
 })
 
-// Daily Herald Update - Every day at 12:00 AM EST  
-// Cron: "0 0 * * *" = minute:0, hour:0, day:any, month:any, dayOfWeek:any
 cron.schedule('0 0 * * *', async () => {
   console.log('🗞️ Starting daily herald update job...')
   try {
@@ -56,7 +52,6 @@ console.log('   📅 Weekly Leaderboard: Mondays at 12:00 AM EST')
 console.log('   📅 Daily Herald: Every day at 12:00 AM EST')
 console.log('🎯 Automation agent is now running...')
 
-// Keep the process alive
 process.on('SIGINT', () => {
   console.log('\n👋 Gracefully shutting down automation agent...')
   process.exit(0)
