@@ -1,85 +1,31 @@
-# divoxutils Leaderboard Tool
+# divoxutils Automation Agent
 
-**Automated backend service that maintains up-to-date character data for divoxutils by running scheduled batch jobs against the Camelot Herald API.**
+**Automated backend service that keeps character statistics current for a Dark Age of Camelot community website by synchronizing data with the official game API.**
 
-## What This Tool Does
+## Purpose
 
-This automation agent replaces manual leaderboard updates by running two critical maintenance jobs:
+This automation agent maintains up-to-date character data for divoxutils, a community tool for Dark Age of Camelot players.
 
-### 🏆 **Weekly Leaderboard Updates** (Mondays 12:00 AM EST)
+## What It Does
 
-- **Purpose**: Tracks weekly performance changes for leaderboard rankings
-- **Process**: Fetches current stats from Herald API and calculates weekly differences (realm points, solo kills, deaths)
-- **Batch Size**: 100 characters per request
-- **Criteria**: Only updates characters that haven't been updated since the last Monday
-- **Impact**: Powers weekly leaderboard rankings and "most improved" statistics
+### Weekly Performance Tracking
 
-### 🗞️ **Daily Herald Updates** (Every day 12:00 AM EST)
+Calculates week-over-week changes in player statistics, enabling dynamic leaderboards that show who's improving and trending analysis for community engagement.
 
-- **Purpose**: Keeps comprehensive character profiles current
-- **Process**: Syncs all Herald data including realm stats, guild info, master levels, and PvP statistics
-- **Batch Size**: 100 characters per request
-- **Scope**: Updates character names, levels, realm points, kill/death ratios, and faction-specific stats
-- **Impact**: Ensures character search and profile pages show accurate information
+### Daily Character Updates
 
-## Technical Architecture
+Performs comprehensive daily synchronization with the official Camelot Herald API to keep all character profiles current with the latest game data.
 
-- **Runtime**: Node.js with PM2 process management
-- **Scheduling**: Native cron jobs (no external dependencies)
-- **Error Handling**: Exponential backoff retry logic (3 attempts: 5s, 15s, 30s delays)
-- **Logging**: Persistent file-based logs with daily rotation
-- **Scalability**: No timeout limits - processes unlimited batches until completion
-- **Resilience**: Auto-restart on crashes, survives server reboots
+### Real-Time Character Profiles
 
-## Monitoring
+Keeps comprehensive character information current by syncing with the official Camelot Herald API. Users can search for any character and see accurate realm points, kill/death ratios, guild affiliations, and progression.
 
-### Log Files
+### Data Reliability
 
-- `./logs/daily-herald-YYYY-MM-DD.log` - Herald update details
-- `./logs/weekly-leaderboard-YYYY-MM-DD.log` - Leaderboard update details
-- `./logs/combined.log` - System-level logs
-- `./logs/error.log` - Error tracking
+Runs on scheduled intervals with graceful error handling, ensuring the community always has access to current game statistics.
 
-### Key Metrics Logged
+## Impact
 
-- Characters checked/updated per batch
-- API response times and success rates
-- Failed update counts and error details
-- Job start/end times and total duration
-- Batch progression tracking
+This tool enables divoxutils to serve as a reliable, always-current resource for the Dark Age of Camelot community. Players can trust that leaderboard positions reflect recent performance and character lookups show real statistics.
 
-## Environment Configuration
-
-Required environment variables:
-
-```env
-API_BASE_URL=http://divoxutils.com
-CRON_SECRET=your-api-endpoint-secret
-RETRY_LIMIT=3
-BACKOFF_BASE_DELAY=5000
-```
-
-## Management Commands
-
-```bash
-# Start the automation agent
-npm run pm2:start
-
-# Monitor real-time logs
-npm run pm2:logs
-
-# Check agent status
-pm2 status divoxutils-automation
-
-# Restart if needed
-npm run pm2:restart
-```
-
-## Resource Usage
-
-- **Memory**: ~30-50MB RAM
-- **CPU**: Minimal (only active during scheduled jobs)
-- **Storage**: Log files grow ~5-10MB per month
-- **Network**: Sequential API calls to Herald (not parallel flooding)
-
-This tool ensures divoxutils always displays current, accurate character data without manual intervention.
+The system processes thousands of character records weekly, allowing the community site to focus on features and user experience rather than data maintenance.
