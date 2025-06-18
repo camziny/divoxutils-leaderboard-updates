@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   apps: [{
     name: 'divoxutils-automation',
     script: 'index.js',
