@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import cron from 'node-cron'
 import { runLeaderboardBatchJob } from './lib/jobs/leaderboard-batch.js'
 import { runHeraldBatchJob } from './lib/jobs/herald-batch.js'
