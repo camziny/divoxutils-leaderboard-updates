@@ -6,6 +6,7 @@ export default {
     autorestart: true,
     watch: false,
     max_memory_restart: '100M',
+    env_file: '.env',
     env: {
       NODE_ENV: 'production'
     },
