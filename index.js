@@ -32,7 +32,7 @@ cron.schedule('0 0 * * 1', async () => {
   timezone: "America/New_York"
 })
 
-cron.schedule('0 0 * * *', async () => {
+cron.schedule('0 0 * * 0,2-6', async () => {
   console.log('🗞️ Starting daily herald update job...')
   try {
     const result = await runHeraldBatchJob()
@@ -48,9 +48,26 @@ cron.schedule('0 0 * * *', async () => {
   timezone: "America/New_York"
 })
 
+cron.schedule('0 12 * * 1', async () => {
+  console.log('🗞️ Starting Monday herald update job (12:00 PM EST)...')
+  try {
+    const result = await runHeraldBatchJob()
+    if (result.success) {
+      console.log(`✅ Monday herald job completed successfully! Total batches: ${result.totalBatches}`)
+    } else {
+      console.error(`❌ Monday herald job failed: ${result.error}`)
+    }
+  } catch (error) {
+    console.error('💥 Critical error in Monday herald job:', error.message)
+  }
+}, {
+  timezone: "America/New_York"
+})
+
 console.log('✅ Scheduled jobs configured:')
 console.log('   📅 Weekly Leaderboard: Mondays at 12:00 AM EST')
-console.log('   📅 Daily Herald: Every day at 12:00 AM EST')
+console.log('   📅 Daily Herald: Tuesday-Sunday at 12:00 AM EST')
+console.log('   📅 Monday Herald: Mondays at 12:00 PM EST')
 console.log('🎯 Automation agent is now running...')
 
 process.on('SIGINT', () => {
