@@ -64,10 +64,17 @@ cron.schedule('0 12 * * 1', async () => {
   timezone: "America/New_York"
 })
 
+cron.schedule('0 * * * *', () => {
+  console.log(`💓 Heartbeat: ${new Date().toISOString()} - Automation agent is alive and monitoring`)
+}, {
+  timezone: "America/New_York"
+})
+
 console.log('✅ Scheduled jobs configured:')
 console.log('   📅 Weekly Leaderboard: Mondays at 12:00 AM EST')
 console.log('   📅 Daily Herald: Tuesday-Sunday at 12:00 AM EST')
 console.log('   📅 Monday Herald: Mondays at 12:00 PM EST')
+console.log('   💓 Heartbeat: Every hour on the hour')
 console.log('🎯 Automation agent is now running...')
 
 process.on('SIGINT', () => {
