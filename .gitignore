@@ -10,13 +10,19 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+app.yaml
 
 # Logs
 logs/
 *.log
+pm2-restart.log
 
 # PM2
 .pm2/
+
+# Local scripts and configurations
+scripts/local/
+*.plist
 
 # Runtime data
 pids
@@ -35,3 +41,27 @@ coverage/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# IDE files
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# Build and cache files
+.npm
+.cache
+.next
+.nuxt
+dist
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+.vscode-test
+
+# Editor temp files
+*.swp
+*.swo
+*~

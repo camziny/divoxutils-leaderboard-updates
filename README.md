@@ -2,11 +2,7 @@
 
 **Automated backend service that keeps character statistics current for a Dark Age of Camelot community website by synchronizing data with the official game API.**
 
-## Purpose
-
-This automation agent maintains up-to-date character data for divoxutils, a community tool for Dark Age of Camelot players.
-
-## What It Does
+## 📋 Features
 
 ### Weekly Performance Tracking
 
@@ -20,11 +16,43 @@ Performs comprehensive daily synchronization with the official Camelot Herald AP
 
 Keeps comprehensive character information current by syncing with the official Camelot Herald API. Users can search for any character and see accurate realm points, kill/death ratios, guild affiliations, and progression.
 
-### Data Reliability
+## 📅 Schedule
 
-Runs on scheduled intervals with graceful error handling, ensuring the community always has access to current game statistics.
+- **Weekly Leaderboard**: Mondays at 12:00 AM EST
+- **Daily Herald**: Tuesday-Sunday at 12:00 AM EST
+- **Monday Herald**: Mondays at 12:00 PM EST
+- **Heartbeat**: Every hour (health monitoring)
 
-## Impact
+## 📁 Project Structure
+
+```
+├── lib/                 # Core application code
+│   ├── jobs/           # Scheduled job implementations
+│   └── utils/          # Utility modules
+├── scripts/            # Management scripts
+│   └── deployment/     # DO deployment scripts
+├── docs/               # Documentation
+└── logs/               # Application logs
+```
+
+See [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) for detailed structure.
+
+## 🔧 Configuration
+
+Environment variables required:
+
+- `API_BASE_URL` - DivoxUtils API endpoint
+- `CRON_SECRET` - Authentication token
+- `RETRY_LIMIT` - Retry attempts (default: 3)
+- `BACKOFF_BASE_DELAY` - Retry delay (default: 5000ms)
+- `BATCH_DELAY` - Batch processing delay (default: 1500ms)
+
+## 📚 Documentation
+
+- [Project Structure](docs/PROJECT_STRUCTURE.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
+
+## 🎯 Impact
 
 This tool enables divoxutils to serve as a reliable, always-current resource for the Dark Age of Camelot community. Players can trust that leaderboard positions reflect recent performance and character lookups show real statistics.
 
