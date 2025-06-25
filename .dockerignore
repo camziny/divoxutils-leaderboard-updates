@@ -1,0 +1,15 @@
+node_modules
+npm-debug.log
+.env
+.env.*
+.git
+.gitignore
+README.md
+.DS_Store
+logs/*
+*.log
+.pm2
+check-health.sh
+force-daily-job.sh
+restart-pm2.sh
+*.plist 

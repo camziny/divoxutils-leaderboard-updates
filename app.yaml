@@ -1,0 +1,24 @@
+name: divoxutils-automation
+region: nyc
+services:
+  - name: automation-agent
+    github:
+      repo: camziny/divoxutils-leaderboard-updates
+      branch: main
+      deploy_on_push: true
+    dockerfile_path: Dockerfile
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    envs:
+      - key: API_BASE_URL
+        value: "https://divoxutils.com"
+        type: SECRET
+      - key: CRON_SECRET
+        value: "7WEVEd3Yc03vUgg3nZfH"
+        type: SECRET
+      - key: RETRY_LIMIT
+        value: "3"
+      - key: BACKOFF_BASE_DELAY
+        value: "5000"
+      - key: BATCH_DELAY
+        value: "1500"
